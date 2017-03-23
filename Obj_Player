@@ -6,6 +6,7 @@ vsp = 0; //Vertical Speed
 jumpspeed = 7;
 movespeed = 5; //The speed of the character
 player_move = true; //Whether the player can move or not
+global.color = 0 //What color the player currently is [0:white, 1:red, 2:blue, 3:purple, etc.]
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
