@@ -1,0 +1,16 @@
+// Create Event
+///Initialize Variables
+grav = 0.7; //Gravity
+hsp = 0; //Horizontal Speed
+vsp = 0; //Vertical Speed
+jumpspeed = 7;
+movespeed = 5; //The speed of the character
+player_move = true; //Whether the player can move or not
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//Step Event
+//Variables
+key_left = -max(keyboard_check(ord("A")),keyboard_check(vk_left),0);
+key_right = max(keyboard_check(ord("D")),keyboard_check(vk_right),0);
+key_jump = max(keyboard_check(ord("W")),keyboard_check(vk_up),0);
