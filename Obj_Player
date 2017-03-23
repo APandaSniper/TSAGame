@@ -15,3 +15,8 @@ global.color = 0 //What color the player currently is [0:white, 1:red, 2:blue, 3
 key_left = -max(keyboard_check(ord("A")),keyboard_check(vk_left),0);
 key_right = max(keyboard_check(ord("D")),keyboard_check(vk_right),0);
 key_jump = max(keyboard_check(ord("W")),keyboard_check(vk_up),0);
+
+//Movement
+move = key_left + key_right; //Tell how the player's input effects movement
+if (vsp < 10) vsp += grav;
+hsp = move * movespeed; //Move left or right
