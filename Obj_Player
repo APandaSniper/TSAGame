@@ -1,16 +1,16 @@
 // Create Event
+
 ///Initialize Variables
 grav = 0.7; //Gravity
 hsp = 0; //Horizontal Speed
 vsp = 0; //Vertical Speed
 jumpspeed = 7;
 movespeed = 5; //The speed of the character
-player_move = true; //Whether the player can move or not
-global.color = 0 //What color the player currently is [0:white, 1:red, 2:blue, 3:purple, etc.]
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //Step Event
+
 //Variables
 key_left = -max(keyboard_check(ord("A")),keyboard_check(vk_left),0);
 key_right = max(keyboard_check(ord("D")),keyboard_check(vk_right),0);
@@ -19,4 +19,38 @@ key_jump = max(keyboard_check(ord("W")),keyboard_check(vk_up),0);
 //Movement
 move = key_left + key_right; //Tell how the player's input effects movement
 if (vsp < 10) vsp += grav;
-hsp = move * movespeed; //Move left or right
+if global.player_move == true hsp = move * movespeed; //Move left or right
+if (place_meeting(x,y+1,obj_barrier)) //If there is a barrier underneath the object...
+{
+    vsp = key_jump * -jumpspeed; //Allow them to jump if they choose
+}
+
+//Horizontal Collision
+if (place_meeting(x+hsp,y,obj_barrier)) //If to left or right is barrier...
+{
+    while (!place_meeting(x+sign(hsp),y,obj_barrier)) //While no barrier left or right by one pixel...
+    {
+        x += sign(hsp); //Move closer by one pixel to the barrier
+    }
+    hsp = 0; //When object is next to barrrier, stop moving closer
+}
+x += hsp; //else if no barrier, move like normal
+
+//Vertical Collision
+if (place_meeting(x,y+vsp,obj_barrier)) //If above or below is barrier object...
+{
+    while(!place_meeting(x,y+sign(vsp),obj_barrier)) //While no barrier above or below by one pixel...
+    {
+        y += sign(vsp); //Move closer by one pixel to the barrier
+    }
+    vsp = 0; //When object right over or below barrier, stop moving closer
+}
+y += vsp; //else if no barrier, jump like normal
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//Collision Event (collision with obj_key)
+
+if global.background == 0 sprite_index = spr_player_black; //if the background is white use black player sprites
+else sprite_index = spr_player_white //else if background is black use white player sprites
+image_index = global.color; //The sprite sub-image equals the current color value
