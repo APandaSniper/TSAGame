@@ -1,0 +1,7 @@
+//Create Event
+
+///Initiate Variables
+global.color = 0; //What color the player curently is [0:white, 1:red, 2:pink, 3:green, 4:purple, 5:cyan]
+global.player_move = true; //Whether the player can move or not
+global.keys = 0; //How many keys the player has picked up
+global.background = 0 //The color of the background [0:white, 1:black]
