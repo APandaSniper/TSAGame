@@ -1,0 +1,3 @@
+~ Parent: obj_barrier
+//Step Event
+image_index = global.baw //Make the sprite sub_image equal to the opposite of the dominant color [0:black, 1:white] <- for platform

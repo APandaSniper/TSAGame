@@ -1,0 +1,10 @@
+//Create Event
+
+image_speed = 0; //Don't cycle through sprite animation
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//Step Event
+
+if global.baw = 0 image_index = 1; //if baw is white, make spike black
+else image_index = 0; //else if baw is black, make the spike white

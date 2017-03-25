@@ -1,0 +1,23 @@
+//Create Event
+
+///Initialize Variables
+locked = true; //The portal is locked when it is created
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//Step Event
+
+//Visible
+if instance_exists(obj_key) //If obj_key exists in the room...
+{
+	image_alpha = 0; //Make the portal invisible
+	locked = true; //Lock the portal
+}
+else
+{
+	if image_alpha < 1 //If the alpha channel of the portal is less than one...
+	{
+		image_alpha += 0.1; //Increase the alpha channel of the object by 0.1
+		locked = false; //Unlock the portal
+	}
+}

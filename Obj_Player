@@ -6,6 +6,7 @@ hsp = 0; //Horizontal Speed
 vsp = 0; //Vertical Speed
 jumpspeed = 7;
 movespeed = 5; //The speed of the character
+image_speed = 0; //Don't cycle through the sprite animation
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -15,6 +16,8 @@ movespeed = 5; //The speed of the character
 key_left = -max(keyboard_check(ord("A")),keyboard_check(vk_left),0);
 key_right = max(keyboard_check(ord("D")),keyboard_check(vk_right),0);
 key_jump = max(keyboard_check(ord("W")),keyboard_check(vk_up),0);
+key_color = max(keyboard_check_pressed(vk_space),0);
+var i = 0; //A one-way-flag variable just for this script and nothing else of this object
 
 //Movement
 move = key_left + key_right; //Tell how the player's input effects movement
@@ -42,15 +45,43 @@ if (place_meeting(x,y+vsp,obj_barrier)) //If above or below is barrier object...
     while(!place_meeting(x,y+sign(vsp),obj_barrier)) //While no barrier above or below by one pixel...
     {
         y += sign(vsp); //Move closer by one pixel to the barrier
+	scr_baw(); //Run script scr_baw()
     }
     vsp = 0; //When object right over or below barrier, stop moving closer
+    scr_baw(); //Run script scr_baw()
 }
 y += vsp; //else if no barrier, jump like normal
+
+//Switch Colors
+if global.color <= 4 global.color += key_color; //If spacebar is pressed change color
+else global.color = 0; //Restart the cycle
+
+//Color Change
+if global.baw == 0 sprite_index = spr_player_black; //if the dominant color is white use black player sprites
+else sprite_index = spr_player_white; //else if the dominant is black use white player sprites
+image_index = global.color; //The sprite sub-image equals the current color value
+image_speed = 0; //Don't cycle through the sprite animation
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //Collision Event (collision with obj_key)
 
-if global.background == 0 sprite_index = spr_player_black; //if the background is white use black player sprites
-else sprite_index = spr_player_white //else if background is black use white player sprites
-image_index = global.color; //The sprite sub-image equals the current color value
+//Remove Key
+with (obj_key) instance_destroy(); //Destroy the key that the player is colliding with
+global.key ++; //Add one to the variable global.key
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//Collision Event (collision with obj_spike)
+
+restart_room(); //Restart the room
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//Collision Event (collision with obj_portal)
+
+if obj_portal.locked == false //If the portal is unlocked...
+{
+	room_goto_next(); //Go to the next room
+}
