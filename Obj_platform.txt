@@ -1,3 +1,10 @@
 ~ Parent: obj_barrier
+//Create Event
+
+image_speed = 0; //Don't cycle through the sprite animation
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 //Step Event
+
 image_index = global.baw //Make the sprite sub_image equal to the opposite of the dominant color [0:black, 1:white] <- for platform

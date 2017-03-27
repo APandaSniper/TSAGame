@@ -8,6 +8,9 @@ jumpspeed = 7;
 movespeed = 5; //The speed of the character
 image_speed = 0; //Don't cycle through the sprite animation
 
+//Creation
+if !instance_exists(obj_initiate) instance_create(0,0,obj_initiate); //If obj_initiate does not exist then create it
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //Step Event
@@ -61,6 +64,10 @@ if global.baw == 0 sprite_index = spr_player_black; //if the dominant color is w
 else sprite_index = spr_player_white; //else if the dominant is black use white player sprites
 image_index = global.color; //The sprite sub-image equals the current color value
 image_speed = 0; //Don't cycle through the sprite animation
+
+//Set Background Color
+if global.baw == 0 room_set_background_colour(room, c_white, true); //If dominant color is white, set the rooms' background color to white
+else room_set_background_colous(room, c_black, true); //Else if the dominant color is black, set the room's backgruond color to black
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
