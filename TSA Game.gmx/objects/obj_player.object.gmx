@@ -114,6 +114,7 @@ image_speed = 0; //Don't cycle through the sprite animation
 //Barrier Color Change
 if (place_meeting(x,y+1,obj_barrier)) global.baw = 1;
 else global.baw = 0;
+
 //Set Background Color
 if global.baw == 0 background_color = c_white; //If dominant color is white, set the rooms' background color to white
 else background_color = c_black; //Else if the dominant color is black, set the room's backgruond color to black
@@ -143,7 +144,7 @@ else background_color = c_black; //Else if the dominant color is black, set the 
 
 if obj_portal.locked == false //If the portal is unlocked...
 {
-	room_goto_next(); //Go to the next room
+room_goto_next(); //Go to the next room
 }
 </string>
           </argument>
@@ -171,33 +172,6 @@ if obj_portal.locked == false //If the portal is unlocked...
 
 room_restart(); //Restart the room
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_key">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//Collision Event (collision with obj_key)
-
-//Remove Key
-with (obj_key) instance_destroy(); //Destroy the key that the player is colliding with
-global.key ++; //Add one to the variable global.key
 </string>
           </argument>
         </arguments>

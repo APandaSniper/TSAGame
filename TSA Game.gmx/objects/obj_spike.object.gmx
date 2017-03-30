@@ -52,7 +52,7 @@ image_speed = 0; //Don't cycle through sprite animation
             <kind>1</kind>
             <string>//Step Event
 
-if global.baw = 0 image_index = 1; //if baw is white, make spike black
+if global.baw = 1 image_index = 1; //if baw is white, make spike black
 else image_index = 0; //else if baw is black, make the spike white
 </string>
           </argument>
