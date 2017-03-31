@@ -66,8 +66,8 @@ if !instance_exists(obj_initiate) instance_create(0,0,obj_initiate); //If obj_in
 key_left = -keyboard_check(ord("A"));
 key_right = keyboard_check(ord("D"));
 key_jump = keyboard_check(ord("W"));
-key_color_inc = keyboard_check_pressed(vk_up);
-key_color_dec = -keyboard_check_pressed(vk_down);
+key_color_inc = keyboard_check_pressed(vk_right);
+key_color_dec = -keyboard_check_pressed(vk_left);
 color = key_color_inc + key_color_dec; 
 var i = 0; //A one-way-flag variable just for this script and nothing else of this object
 
