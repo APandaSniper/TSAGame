@@ -63,10 +63,12 @@ if !instance_exists(obj_initiate) instance_create(0,0,obj_initiate); //If obj_in
             <string>//Step Event
 
 //Variables
-key_left = -max(keyboard_check(ord("A")),keyboard_check(vk_left),0);
-key_right = max(keyboard_check(ord("D")),keyboard_check(vk_right),0);
-key_jump = max(keyboard_check(ord("W")),keyboard_check(vk_up),0);
-key_color = max(keyboard_check_pressed(vk_space),0);
+key_left = -keyboard_check(ord("A"));
+key_right = keyboard_check(ord("D"));
+key_jump = keyboard_check(ord("W"));
+key_color_inc = keyboard_check_pressed(vk_up);
+key_color_dec = -keyboard_check_pressed(vk_down);
+color = key_color_inc + key_color_dec; 
 var i = 0; //A one-way-flag variable just for this script and nothing else of this object
 
 //Movement
@@ -101,8 +103,10 @@ if (place_meeting(x,y+vsp,obj_barrier)) //If above or below is barrier object...
 y += vsp; //else if no barrier, jump like normal
 
 //Switch Colors
-if global.color &lt;= 5 global.color += key_color; //If spacebar is pressed change color
-else global.color = 0; //Restart the cycle
+
+global.color += color;
+if global.color &gt; 5 global.color = 0;
+else if global.color &lt; 0 global.color = 5;
 
 //Color Change
 if global.baw == 0 sprite_index = spr_player_black; //if the dominant color is white use black player sprites
@@ -112,8 +116,8 @@ image_speed = 0; //Don't cycle through the sprite animation
 
 
 //Barrier Color Change
-if (place_meeting(x,y+1,obj_barrier)) global.baw = 1;
-else global.baw = 0;
+if (place_meeting(x,y+1,obj_barrier)) global.baw = 0;
+else global.baw = 1;
 
 //Set Background Color
 if global.baw == 0 background_color = c_white; //If dominant color is white, set the rooms' background color to white
@@ -173,70 +177,6 @@ room_goto_next(); //Go to the next room
 room_restart(); //Restart the room
 
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>500</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring>draw_self();</codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>524</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_color</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>13</kind>
-            <string>4194368</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>613</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_draw_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>-1</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>global.baw</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>50</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>50</string>
           </argument>
         </arguments>
       </action>

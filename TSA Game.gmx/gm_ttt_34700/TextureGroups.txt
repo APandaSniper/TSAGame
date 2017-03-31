@@ -1,0 +1,1 @@
+Default : true : 2 : true : 9223372036854775807 : <none> : spr_barrier,spr_player_white,spr_player_black,spr_backround,spr_keys,spr_spike,spr_portal,spr_platform
