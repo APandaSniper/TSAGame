@@ -30,7 +30,6 @@
     <object>objects\obj_platform</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room_test</room>
     <room>rooms\room1</room>
   </rooms>
   <help>
