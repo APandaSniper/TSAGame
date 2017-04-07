@@ -14,6 +14,7 @@
     <sprite>sprites\spr_spike</sprite>
     <sprite>sprites\spr_portal</sprite>
     <sprite>sprites\spr_platform</sprite>
+    <sprite>sprites\spr_enemy</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -28,9 +29,15 @@
     <object>objects\obj_portal</object>
     <object>objects\obj_initiate</object>
     <object>objects\obj_platform</object>
+    <object>objects\obj_enemy</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room1</room>
+    <room>rooms\rm_level_learn</room>
+    <room>rooms\rm_level_1</room>
+    <room>rooms\rm_level_2</room>
+    <room>rooms\rm_level_3</room>
+    <room>rooms\rm_level_4</room>
+    <room>rooms\rm_level_5</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
